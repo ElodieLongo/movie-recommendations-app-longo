@@ -2,10 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "../styles/Home.module.css";
 import { withIronSessionSsr } from "iron-session/next";
 import sessionOptions from "../config/session";
 import Header from "../components/header";
 import useLogout from "../hooks/useLogout";
+import DashboardHero from "../components/hero";
 
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
@@ -35,52 +37,22 @@ export default function Dashboard(props) {
 
       <Header isLoggedIn={props.isLoggedIn} username={props.user.username} />
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to a <a href="https://nextjs.org">Next.js!</a> Dashboard Page!
-        </h1>
+      <DashboardHero user={props.user} />
 
-        <p className={styles.description}>
-          Current Location: <code className={styles.code}>{router.asPath}</code>
-          <br />
-          Status:{" "}
-          <code className={styles.code}>
-            {!props.isLoggedIn && " Not"} Logged In
-          </code>
-        </p>
+      
 
-        <p className={styles.description}>
-          This page is only visible if you are logged in.
-        </p>
-
-        <div className={styles.grid}>
-          <Link href="/" className={styles.card}>
-            <h2>Home &rarr;</h2>
-            <p>Return to the homepage.</p>
-          </Link>
-          <div
-            onClick={logout}
-            style={{ cursor: "pointer" }}
-            className={styles.card}
-          >
-            <h2>Logout &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </div>
-        </div>
-      </main>
-
-      <Box as="footer" mt={8} textAlign="center">
+      <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
           Powered by{" "}
-          <span>
+          <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
-      </Box>
+      </footer>
     </div>
   );
 }

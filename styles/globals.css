@@ -24,3 +24,26 @@ a {
     background: black;
   }
 }
+
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.movie {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 1fr;
+  align-items: center;
+  border: 1px solid rgba(0,0,0,.3);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.movie p {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+}

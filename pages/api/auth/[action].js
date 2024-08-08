@@ -4,8 +4,8 @@ import db from '../../../db'
 
 export default withIronSessionApiRoute(
   function handler(req, res) {
-    if (req.method !== 'POST')
-      return res.status(404).end()
+    console.log('[action] switch')
+    if (req.method !== 'POST') return res.status(404).end()
     switch(req.query.action) {
       case "login":
         return login(req, res)
@@ -34,10 +34,12 @@ async function login(req, res) {
     res.status(400).json({error: err.message})
   }
 }
+
 async function logout(req, res) {
   await req.session.destroy()
   res.status(200).end()
 }
+
 async function signup(req, res) {
   try {
     const {username, password} = req.body
