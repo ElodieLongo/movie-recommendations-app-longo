@@ -16,7 +16,8 @@ How to use the app
 3 - Save your favorite genres to see our customized movie recommendations
 
 4 - Reset yor favorite genres to change your preferences and get different recommendations
-![til](./Repositories/movie-recommendations-app-longo/Readme - GIF.gif)
+
+![til](./app/Readme - GIF.gif)
 
 
 Thank you!
