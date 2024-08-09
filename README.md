@@ -17,7 +17,8 @@ How to use the app
 
 4 - Reset yor favorite genres to change your preferences and get different recommendations
 
-![til](./app/Readme - GIF.gif)
+![til](./Readme%20-%20GIF.gif)
+
 
 
 Thank you!
