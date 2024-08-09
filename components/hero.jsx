@@ -87,9 +87,10 @@ export default function CallToActionWithAnnotation(props) {
         {userPreferredGenres.length > 0 && (
           <Button
             onClick={() => setUserPreferredGenres([])}
-            colorScheme="teal"
+            bg="orange.300"     
+            color="white" 
             size="lg"
-            mb={6} // Margin bottom for spacing
+            mb={6} 
             maxWidth="300px"
             whiteSpace="normal"
             wordBreak="break-word"
