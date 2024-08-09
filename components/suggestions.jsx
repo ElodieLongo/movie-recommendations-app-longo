@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Box, Heading, Container, Text, Grid, GridItem, Checkbox, Button } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, Grid, GridItem, Checkbox, Button, Flex } from '@chakra-ui/react';
 const movieKey = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 
 export default function SuggestFilm(props) {
@@ -24,41 +24,64 @@ export default function SuggestFilm(props) {
   }, []);
 
 
-    // FETCH FILM DA FAVORITI
- 
 
   return (
     <>
 
-<Text color={'gray.500'}>
-    Your favorite genres:
-  </Text>
+<Text color={'gray.500'} fontSize="2xl" mb={8}>
+  We recommend these movies for you:
+</Text>
   
-<div className="movie-grid">
-{movies && movies.map((movie, i) => (
-      <div className="movie" key={'movie' + i} id={'movie' + i} w='100%'>
-        <Text color={'gray.500'}>
-          {movie.title}
-        </Text>
-        
-        <img  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="movie title" />
+  <Grid templateColumns="repeat(2, 1fr)" gap={8}>
+        {movies && movies.map((movie, i) => (
+          <GridItem
+            key={'movie' + i}
+            bg="gray.50"
+            p={4}
+            borderRadius="md"
+            boxShadow="md"
+          >
+            <Flex direction="row" justify="space-between">
+              {/* Image Section */}
+              <Box flex="1" mr={4}>
+                <img 
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} 
+                  alt={movie.title} 
+                  style={{
+                    borderRadius: '8px',
+                    objectFit: 'cover',
+                    width: '100%',
+                    height: '100%',
+                  }}
+                />
+              </Box>
 
-        <Text color={'gray.500'}>
-          Overview: {movie.overview}
-        </Text>
+              {/* Text Content Section */}
+              <Box flex="2">
+                <Text fontWeight="bold" fontSize="lg" mb={2} color="gray.700">
+                  {movie.title}
+                </Text>
 
-        <Text color={'gray.800'}>
-          Average Vote: {movie.vote_average}
-        </Text>
+                <Text fontSize="sm" color="gray.600" mb={2}>
+                  Release date: {movie.release_date}
+                </Text>
 
-        <Text color={'gray.800'}>
-          Vote Count: {movie.vote_count}
-        </Text>
-      </div>
-    ))}
-</div>
+                <Text fontSize="sm" color="gray.600" mb={2} noOfLines={6}>
+                  Overview: {movie.overview}
+                </Text>
 
+                <Text fontSize="sm" color="gray.800" mb={2}>
+                  Average Vote: {movie.vote_average}
+                </Text>
 
+                <Text fontSize="sm" color="gray.800">
+                  Vote Count: {movie.vote_count}
+                </Text>
+              </Box>
+            </Flex>
+          </GridItem>
+        ))}
+      </Grid>
     </>
   );
 }

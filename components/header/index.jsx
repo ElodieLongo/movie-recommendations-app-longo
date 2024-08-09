@@ -1,34 +1,44 @@
-import styles from "./style.module.css";
-import Link from "next/link";
+import NextLink from 'next/link';
 import useLogout from "../../hooks/useLogout";
+import { Box, Code, Container, Flex, Heading, Text, VStack, Link } from "@chakra-ui/react";
 
 export default function Header(props) {
   const logout = useLogout();
   return (
-    <header className={styles.container}>
-      {props.isLoggedIn ? (
-        <>
-          <p>
-            <Link href="/">Home</Link>
-          </p>
-          <div className={styles.container}>
-            <p>Welcome, {props.username}!</p>
-            <p onClick={logout} style={{ cursor: "pointer" }}>
+    <Box as="header" bg="orange.300" p={4} color="white">
+      <Flex justify="space-between" align="center" maxW="1200px" mx="auto">
+        <Text fontSize="lg" fontWeight="bold">
+          <Link as={NextLink} href="/" passHref>
+            Home
+          </Link>
+        </Text>
+
+        {props.isLoggedIn ? (
+          <Flex align="center">
+            <Text mr={4}>Welcome, {props.username}!</Text>
+            <Text
+              onClick={logout}
+              cursor="pointer"
+              _hover={{ textDecoration: "underline" }}
+            >
               Logout
-            </p>
-          </div>
-        </>
-      ) : (
-        <>
-          <p>
-            <Link href="/">Home</Link>
-          </p>
-          <p>
-            <Link href="/login">Login</Link>
-          </p>
-        </>
-      )}
-    </header>
+            </Text>
+          </Flex>
+        ) : (
+          <Flex>
+            <Text mr={4}>
+              <Link as={NextLink} href="/" passHref>
+                Home
+              </Link>
+            </Text>
+            <Text>
+              <Link as={NextLink} href="/login" passHref>
+                Login
+              </Link>
+            </Text>
+          </Flex>
+        )}
+      </Flex>
+    </Box>
   );
 }
-
